@@ -1,0 +1,16 @@
+html
+    head
+        title GameReview
+    body
+        if user
+            h1 Welcome #{user.email}
+
+        form(method="POST", action="/signin")
+            input(type="email", name="username")
+            input(type="password", name="password")
+            button(type="submit") Se connecter
+
+        form(method="POST", action="/signup")
+            input(type="email", name="username")
+            input(type="password", name="password")
+            button(type="submit") S'inscrire

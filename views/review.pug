@@ -1,0 +1,48 @@
+html
+    head
+        title GameReview
+    body
+        include authentification
+        form(method="POST", action="/review/")
+            p
+                h1 Ecrivez une Review sur un jeu
+                label(for="Jeu") Jeu
+                input(type="text", id="Jeu", name="jeu", placeholder="Titre du jeu ")
+                label(for="Critique") Critique
+                textarea(id="Critique", name="critique", placeholder="Ecrivez votre critique ici...")
+                label(for="vote")   Vote
+                input(type="byte", id="vote", name="vote", placeholder="1 à 5")
+                button(type="submit") Postez
+
+        for review in reviews
+
+            h1 #{review.jeu}
+            p #{review.critique}
+            p #{review.vote}
+
+
+
+            form(method="post", action="/review/" + review.id + "/like")
+                button(type='submit') Like
+            form(method="post", action="/review/" + review.id + "/dislike")
+                button(type='submit') Dislike
+
+            if user
+                form(action='/comment/' + review.id, method='post' )
+                    div
+                        label(for='commentaire') Commentaire
+                        input(id='commentaire' name='commentaire')
+                        input(type='submit')
+            else
+                a(href="/login") Ajouter un commentaire
+            for comment in review.comments
+                comment
+                    h1 #{comment.user.firstname} #{comment.commentaire}
+
+
+
+
+
+
+
+

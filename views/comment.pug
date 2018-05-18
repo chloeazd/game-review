@@ -1,0 +1,16 @@
+html
+    head
+        title GameReview
+    body
+        main
+        h1 AjouteZ une Review
+
+    form(action='/comment/' + review.id, method='post' )
+        div
+            label(for='commentaire') Commentaire
+            input(id='commentaire' name='commentaire', placeholder="Ecrivez votre Commentaire ici...")
+            input(type='submit')
+
+    for comment in review.comments
+        comment
+            h1 #{comment.user.firstname} #{comment.commentaire}
